@@ -1,0 +1,22 @@
+Solana를 기반으로 app을 만드는 경우 devnet이나 testnet에서 개발이 필요한 이 때 solana token이 필요하다.
+airdrop받을 임시지갑을 생성하고 임시지갑에서 더 이상 airdrop을 받지 못하는 경우 자신의 main지값으로
+airdrop받은 solana를 전송한다.
+
+testnet이나 devnet의 경우 지갑 주소당 airdrop하는 갯수가 일정기간동안 정해져 있는듯하다.
+(테스트 해보니 대략 25개 정도 이며 1일 정도 지나면 다시 받을 수 있게 되는듯)
+이런 이유로 임시지갑을 생성하여 airdrop받고 더 이상 받지 못하거 airdrop요청시 오류가 나면
+main지갑으로 받은 solana를 전송하고 기존 임시지값은 삭제하고 다시 생성하여 airdrop 을 받는다.
+
+solana token을 airdrop받는 것을 자동으로 할 수 있는 프로그램을 아래에 공개한다.
+
+0) airdrop받을 임시지갑 생성.
+1) airdrop token을 보유한 source지갑의 잔고 조회.
+2) 잔고가 1 SOL 이상인 경우 airdrop을 요청.
+3) 잔고가 1 SOL 미만인 경우는 잔고가 1SOL 이상이 될 때 까지 주기적으로 모니터링.
+4) airdrop요청결과 실패하는 경우 지금까지 airdrop받은 SOL을 자신의 main 지갑으로 전송.
+5) 임시지갑 삭제.
+5) airdrop받을 새로운 임시지갑생성.
+6) 설정된 최대 airdrop을 받은 경우 일정기간 대기상태로 전환(타인을 위한 배려?)
+7) 1) 부터 다시 반복
+
+my_account의 값을 최종적으로 airdrop받은 SOL을 모으는 자신의 지갑주소로 설정 하면된다.
