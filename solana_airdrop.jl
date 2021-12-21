@@ -87,11 +87,11 @@ while true
         if code == 0
           recv_account = string(strip(out))
           out,err,code = execute("solana airdrop $(amount) $(recv_account)  --url $(url)")
-          # 에어드람 성공
+          # 에어드롭 성공
           if code == 0
             println("에어드롭성공(SUM:$(amount_sum)) ($recv_account) : $(out) SOL")
             flush(stdout)
-          # 에어드람 실패
+          # 에어드롭 실패
           # 잔고가 있는데 에러가 나면 최대치에 해당 했다고 가정 하고 새로운 주소를 만들고 다시 한다.
           else
             # 현재 지갑의 잔고조회
